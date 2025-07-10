@@ -1,0 +1,6 @@
+@SantoSabor.Presentation_HostAddress = http://localhost:5186
+
+GET {{SantoSabor.Presentation_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
