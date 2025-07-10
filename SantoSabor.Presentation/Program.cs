@@ -62,13 +62,6 @@ builder.Services.AddAuthentication(options =>
                 context.Fail("Token inválido: Usuário não identificado.");
                 return;
             }
-
-            var user = await userManager.FindByIdAsync(userId);
-
-            if (user == null)
-            {
-                context.Fail("usuário excluido!");
-            }
         }
     };
 });

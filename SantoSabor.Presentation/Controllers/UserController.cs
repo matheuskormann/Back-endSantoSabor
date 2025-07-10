@@ -25,8 +25,16 @@ namespace SantoSabor.Presentation.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<UserDTO>>> GetAll()
         {
-            var users = await _userService.GetAllUsersAsync();
-            return Ok(users);
+            try
+            {
+                var users = await _userService.GetAllUsersAsync();
+                return Ok(users);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+
         }
 
         /// <summary>
