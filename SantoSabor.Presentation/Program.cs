@@ -74,6 +74,8 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IClientService, ClientService>();
 builder.Services.AddScoped<IClientRepository, ClientRepository>();
+builder.Services.AddScoped<IMealService, MealService>();
+builder.Services.AddScoped<IMealRepository, MealRepository>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>

@@ -10,38 +10,38 @@ using System.Threading.Tasks;
 
 namespace SantoSabor.Infrastructure.Repositories
 {
-    public class ClientRepository : IClientRepository
+    public class MealRepository : IMealRepository
     {
         private readonly MyDbContext _context;
 
-        public ClientRepository(MyDbContext context)
+        public MealRepository(MyDbContext context)
         {
             _context = context;
         }
-        public async Task<IEnumerable<Client>> GetAllAsync()
+        public async Task<IEnumerable<Meal>> GetAllMealAsync()
         {
-            return await _context.Clients.ToListAsync();
+            return await _context.Meals.ToListAsync();
         }
 
-        public async Task<Client?> GetByCpfAsync(string cpf)
+        public async Task<Meal?> getByNameAsync(string name)
         {
-            return await _context.Clients.FirstOrDefaultAsync(c => c.Cpf == cpf);
+            return await _context.Meals.FirstOrDefaultAsync(n => n.Name.ToLower() == name.ToLower());
         }
 
-        public async Task<Client?> GetByIdAsync(Guid id)
+        public async Task<Meal?> GetMealByIdAsync(Guid id)
         {
-            return await _context.Clients.FindAsync(id);
+            return await _context.Meals.FindAsync(id);
         }
-            
-        public async Task RegisterClientAsync(Client client)
+
+        public async Task RegisterMealAsync(Meal meal)
         {
-            await _context.AddAsync(client);
+            await _context.AddAsync(meal);
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveClientAsync(Client client)
+        public async Task RemoveMealAsync(Meal meal)
         {
-            _context.Remove(client);
+            _context.Remove(meal);
             await _context.SaveChangesAsync();
         }
 
@@ -50,9 +50,9 @@ namespace SantoSabor.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateClientAsync(Client client)
+        public async Task UpdateMealAsync(Meal meal)
         {
-            _context.Clients.Update(client);
+            _context.Meals.Update(meal);
             await _context.SaveChangesAsync();
         }
     }
