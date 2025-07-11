@@ -13,6 +13,7 @@ namespace SantoSabor.Infrastructure.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Meal> Meals { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
