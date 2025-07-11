@@ -9,11 +9,11 @@ Clone o projeto:
 **por HTTPS**
 
 ```bash
-  git@github.com:matheuskormann/Back-endSantoSabor.git
+  https://github.com/matheuskormann/Back-endSantoSabor.git
 ```
   **por SSH**
 ```bash
-  https://github.com/matheuskormann/Back-endSantoSabor.git
+  git@github.com:matheuskormann/Back-endSantoSabor.git
 ```
 
 ## Configure o banco de dados local
