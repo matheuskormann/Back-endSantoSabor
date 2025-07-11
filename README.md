@@ -1,5 +1,5 @@
 
-# Doe Bem - Back-end
+# Santo Sabor - Back-end
 
 
 ## Rodando o Projeto
@@ -9,40 +9,40 @@ Clone o projeto:
 **por HTTPS**
 
 ```bash
-  git clone https://github.com/lucasbaumer/DoeBem-app-back.git
+  git@github.com:matheuskormann/Back-endSantoSabor.git
 ```
   **por SSH**
 ```bash
-  git clone git@github.com:lucasbaumer/DoeBem-app-back.git
+  https://github.com/matheuskormann/Back-endSantoSabor.git
 ```
 
 ## Configure o banco de dados local
-No arquivo appsettings.json dentro da pasta doebem.presentation, altere a string de conexão para apontar para seu SQL server local
+No arquivo appsettings.json dentro da pasta santosabor.presentation, altere a string de conexão para apontar para seu SQL server local
 
 ```bash
 "ConnectionStrings": {
-  "DefaultConnection": "Server=localhost;Database=DoeBemDb;Trusted_Connection=True;TrustServerCertificate=True;"
+  "DefaultConnection": "Server=localhost;Database=SantoSaborDB;Trusted_Connection=True;TrustServerCertificate=True;"
 }
 ```
 ## Caso utilize autenticação por usuário e senha, ajuste para:
 
 ```bash
 "ConnectionStrings": {
-  "DefaultConnection": "Server=localhost;Database=DoeBemDb;User Id=seu_usuario;Password=sua_senha;TrustServerCertificate=True;"
+  "DefaultConnection": "Server=localhost;Database=SantoSaborDB;User Id=seu_usuario;Password=sua_senha;TrustServerCertificate=True;"
 }
 ```
 
 ## Restaure os pacotes e atualize o banco 
-O MyDbContext está localizado na pasta Infrastructure. Para aplicar as migrations e atualizar o banco rode os comandos abaixo na raiz do projeto (DoeBemBackend)
+O MyDbContext está localizado na pasta Infrastructure. Para aplicar as migrations e atualizar o banco rode os comandos abaixo na raiz do projeto (SantoSaborBackend ou o nome que você colocou)
 
 Criar migration (substitua "NomeDaMigration" por um nome que descreva as mudanças)
 ```bash
-dotnet ef migrations add NomeDaMigration --project doeBem.Infrastructure --startup-project doeBem.Presentation
+dotnet ef migrations add NomeDaMigration --project SantoSabor.Infrastructure --startup-project SantoSabor.Presentation
 ```
 
 ```bash
 # Atualizar o banco aplicando a migration
-dotnet ef database update --project doeBem.Infrastructure --startup-project doeBem.Presentation
+dotnet ef database update --project SantoSabor.Infrastructure --startup-project SantoSabor.Presentation
 ```
 
 ## Se não possui a ferramenta dotnet -ef instalada: 
@@ -56,7 +56,7 @@ dotnet tool install --global dotnet-ef
 ## Entre no diretório do projeto
 
 ```bash
-  cd doeBem.Presentation
+  cd SantoSabor.Presentation
 ```
 
 ## Execute o comando 
@@ -76,6 +76,5 @@ dotnet tool install --global dotnet-ef
 
 - [@Lucas Baumer](https://www.github.com/lucasbaumer)
 - [@Matheus Kormann](https://www.github.com/matheuskormann)
-- [@MuriloMayer](https://www.github.com/MuriloMayer)
 
 
