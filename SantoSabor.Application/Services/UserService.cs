@@ -20,21 +20,28 @@ namespace SantoSabor.Application.Services
         {
             var users = await _userRepository.GetAllAsync();
 
-            return users.Select(user => new UserDTO
+            if(!users.Any())
             {
-                UserId = user.UserId,
-                Name = user.Name,
-                Email = user.Email,
-                Role = user.Role,
-                CreatedAt = user.CreatedAt
-            });
+                throw new Exception("Lista de usuários está vazia!");
+            }
+                return users.Select(user => new UserDTO
+                {
+                    UserId = user.UserId,
+                    Name = user.Name,
+                    Email = user.Email,
+                    Role = user.Role,
+                    CreatedAt = user.CreatedAt
+                });
+
         }
 
         public async Task<UserDTO> GetUserByIdAsync(Guid id)
         {
             var user = await _userRepository.GetByIdAsync(id);
             if (user == null)
-                throw new Exception("Usuário com Id não foi encontrado!");
+            {
+                return null;
+            }
 
             return new UserDTO
             {
@@ -88,7 +95,7 @@ namespace SantoSabor.Application.Services
             }
             catch (Exception ex)
             {
-                await _userManager.DeleteAsync(identityUser); // rollback
+                await _userManager.DeleteAsync(identityUser);
                 throw new Exception("Erro ao salvar usuário: " + ex.Message);
             }
         }
@@ -96,7 +103,10 @@ namespace SantoSabor.Application.Services
         public async Task<bool> UpdateUserAsync(Guid id, UserUpdateDTO userUpdateDTO)
         {
             var user = await _userRepository.GetByIdAsync(id);
-            if (user == null) return false;
+            if (user == null)
+            {
+                return false;
+            }
 
             user.Name = userUpdateDTO.Name;
             user.Email = userUpdateDTO.Email;
