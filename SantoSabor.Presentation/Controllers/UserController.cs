@@ -100,7 +100,7 @@ namespace SantoSabor.Presentation.Controllers
         {
             var result = await _userService.DeleteUserAsync(id);
             if (!result)
-                return BadRequest("Erro ao remover usuário!");
+                return NotFound("Erro ao remover usuário!");
 
             return Ok("Usuário removido com sucesso!");
         }

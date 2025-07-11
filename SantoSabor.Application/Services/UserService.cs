@@ -39,7 +39,9 @@ namespace SantoSabor.Application.Services
         {
             var user = await _userRepository.GetByIdAsync(id);
             if (user == null)
-                throw new Exception("Usuário com Id não foi encontrado!");
+            {
+                return null;
+            }
 
             return new UserDTO
             {

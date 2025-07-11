@@ -46,6 +46,11 @@ namespace SantoSabor.Application.Services
         {
             var clients = await _clientRepository.GetAllAsync();
 
+            if (!clients.Any())
+            {
+                throw new Exception("Lista de clientes está vazia!");
+            }
+
             return clients.Select(client => new ClientDTO
             {
                 ClientId = client.ClientId,

@@ -5,7 +5,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SantoSabor.Application.Interfaces;
 using SantoSabor.Application.Services;
+using SantoSabor.Core.Interfaces;
 using SantoSabor.Infrastructure.Data;
+using SantoSabor.Infrastructure.Repositories;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -70,6 +72,8 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IClientService, ClientService>();
+builder.Services.AddScoped<IClientRepository, ClientRepository>();
 builder.Services.AddScoped<TokenService>();
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
@@ -150,7 +154,7 @@ async Task CreateRoles(IServiceProvider serviceProvider)
     using var scope = serviceProvider.CreateScope();
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
-    string[] roles = { "Admin", "Donor" };
+    string[] roles = { "Admin", "User" };
 
     foreach (var role in roles)
     {

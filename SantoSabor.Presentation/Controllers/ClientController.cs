@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.VisualBasic;
 using SantoSabor.Application.DTOS;
 using SantoSabor.Application.Interfaces;
@@ -8,6 +9,7 @@ namespace SantoSabor.Presentation.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class ClientController : ControllerBase
     {
         private readonly IClientService _clientService;
@@ -22,8 +24,16 @@ namespace SantoSabor.Presentation.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ClientDTO>>> GetAllClients()
         {
-            var clients = await _clientService.GetAllAsync();
-            return Ok(clients);
+            try
+            {
+                var clients = await _clientService.GetAllAsync();
+                return Ok(clients);
+            }
+            catch(Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+            
         }
 
         /// <summary>
